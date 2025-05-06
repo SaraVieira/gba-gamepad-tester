@@ -34,7 +34,14 @@ namespace
     constexpr bn::fixed text_x_inc = 14;
     constexpr bn::fixed text_x_limit = (bn::display::width() / 2) - text_x_inc;
 
-    void text_scene()
+    const bn::fixed_t<12> START_Y = -(text_y_limit - 20);
+    const bn::fixed_t<12> SELECT_Y = -(text_y_limit - 40);
+    const bn::fixed_t<12> A_Y = -(text_y_limit - 60);
+    const bn::fixed_t<12> B_Y = -(text_y_limit - 80);
+    const bn::fixed_t<12> R_Y = -(text_y_limit - 100);
+    const bn::fixed_t<12> L_Y = -(text_y_limit - 120);
+
+    void keypad_test()
     {
 
         bn::regular_bg_ptr bg = bn::regular_bg_items::bg.create_bg(0, 0);
@@ -47,12 +54,6 @@ namespace
         text_generator.generate(0, -text_y_limit, "Game Pad Test", text_sprites);
         text_generator.set_left_alignment();
 
-        const bn::fixed_t<12> START_Y = -(text_y_limit - 20);
-        const bn::fixed_t<12> SELECT_Y = -(text_y_limit - 40);
-        const bn::fixed_t<12> A_Y = -(text_y_limit - 60);
-        const bn::fixed_t<12> B_Y = -(text_y_limit - 80);
-        const bn::fixed_t<12> R_Y = -(text_y_limit - 100);
-        const bn::fixed_t<12> L_Y = -(text_y_limit - 120);
         bn::sprite_palette_item original_palette_item = text_generator.palette_item();
 
         if (bn::keypad::start_pressed() || bn::keypad::start_held())
@@ -156,10 +157,8 @@ int main()
 {
     bn::core::init();
 
-    // bn::bg_palettes::set_transparent_color(bn::color(16, 16, 16));
-
     while (true)
     {
-        text_scene();
+        keypad_test();
     }
 }
